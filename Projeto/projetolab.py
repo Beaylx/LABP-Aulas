@@ -74,6 +74,7 @@ print(f"\n--- Cliente: {cliente1.nome} ---")
 pedidoBeatriz = Pedido(cliente1)
 
 print("\n--- SIMULACAO DE PEDIDO ---")
+
 pedidoBeatriz.adicionar_item(Cardapio[0])
 pedidoBeatriz.adicionar_item(Cardapio[0])
 pedidoBeatriz.adicionar_item(Cardapio[1])
