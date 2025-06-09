@@ -89,9 +89,9 @@ def jogar():
     erros = 0
     chutes = set()
 
-    print('-' * 30)
+    print('=' * 30)
     print('Forca dos games!')
-    print('-' * 30)
+    print('=' * 30)
     print(f'O jogo possui {len(palavra_random)} letras.')
 
     while erros < chances and '_' in letras_certas:
