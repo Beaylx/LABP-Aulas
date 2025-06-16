@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Forca</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='forca.css') }}">
+</head>
+<body>
+    <main class="container">
+        <h1>Forca dos Games!</h1>
+
+        <div class="forca-desenho-container">
+            <svg viewBox="0 0 200 250" class="forca-svg">
+                <line x1="20" y1="230" x2="180" y2="230" stroke="white" stroke-width="5" />
+                <line x1="50" y1="230" x2="50" y2="20" stroke="white" stroke-width="5" />
+                <line x1="50" y1="20" x2="150" y2="20" stroke="white" stroke-width="5" />
+                <line x1="150" y1="20" x2="150" y2="50" stroke="white" stroke-width="2" />
+
+                <g class="boneco-parte boneco-cabeca {{ 'visivel' if erros >= 1 else '' }}">
+                    <circle cx="150" cy="70" r="20" stroke="white" stroke-width="2" fill="none" />
+                </g>
+                <g class="boneco-parte boneco-corpo {{ 'visivel' if erros >= 2 else '' }}">
+                    <line x1="150" y1="90" x2="150" y2="150" stroke="white" stroke-width="2" />
+                </g>
+                <g class="boneco-parte boneco-braco-esq {{ 'visivel' if erros >= 3 else '' }}">
+                    <line x1="150" y1="100" x2="120" y2="130" stroke="white" stroke-width="2" />
+                </g>
+                <g class="boneco-parte boneco-braco-dir {{ 'visivel' if erros >= 4 else '' }}">
+                    <line x1="150" y1="100" x2="180" y2="130" stroke="white" stroke-width="2" />
+                </g>
+                <g class="boneco-parte boneco-perna-esq {{ 'visivel' if erros >= 5 else '' }}">
+                    <line x1="150" y1="150" x2="130" y2="190" stroke="white" stroke-width="2" />
+                </g>
+                <g class="boneco-parte boneco-perna-dir {{ 'visivel' if erros >= 6 else '' }}">
+                    <line x1="150" y1="150" x2="170" y2="190" stroke="white" stroke-width="2" />
+                </g>
+            </svg>
+        </div>
+
+        <p class="forca-status">Palavra: <span class="palavra-exibida">{{ palavra_exibida }}</span></p>
+        <p class="forca-status">Erros: {{ erros }} / 6</p>
+        
+        {% if chutes_feitos %}
+            <p class="letras-chutadas">Letras já tentadas: {{ chutes_feitos }}</p>
+        {% endif %}
+
+        {% if resultado_forca %}
+            <div class="resultado {{ 'acerto' if 'está na palavra' in resultado_forca.lower() else 'erro' }}">
+                <p>{{ resultado_forca }}</p>
+            </div>
+        {% endif %}
+
+        {% if not jogo_forca_finalizado %}
+            <form method="POST">
+                <label for="letra">Digite uma letra:</label>
+                <input type="text" id="letra" name="letra" maxlength="1" pattern="[a-zA-Z]" required autofocus>
+                <button type="submit" class="botao-enviar">Chutar</button>
+            </form>
+        {% else %}
+            <p class="mensagem-final {{ 'vitoria' if 'Parabéns' in mensagem_final else 'derrota' }}">
+                {{ mensagem_final }}
+            </p>
+            <a href="{{ url_for('reiniciar_forca') }}" class="botao-enviar">Jogar Novamente</a>
+        {% endif %}
+        
+        <a href="{{ url_for('index') }}" class="botao-voltar">Voltar à página inicial</a>
+    </main>
+</body>
+</html>

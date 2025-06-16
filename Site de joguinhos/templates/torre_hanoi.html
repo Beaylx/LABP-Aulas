@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Torre de Hanói</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='torre_hanoi.css') }}">
+</head>
+<body>
+    <main class="container">
+        <h1>Torre de Hanói</h1>
+        <p class="subtitulo">Mova todos os {{ num_discos }} discos da haste A para a haste C.</p>
+        <p class="movimentos-info">Movimentos: <span class="num-movimentos">{{ movimentos }}</span></p>
+
+        {% if mensagem %}
+            <div class="mensagem-jogo">
+                <p>{{ mensagem }}</p>
+            </div>
+        {% endif %}
+
+        <div class="hanoi-board">
+            {% for haste_nome in hastes_nomes %}
+                <div class="haste" id="haste-{{ haste_nome }}">
+                    <div class="post"></div>
+                    <div class="discos">
+                        {# REMOVIDO o | reverse daqui. A ordem dos discos na lista já deve estar correta (maior para menor). #}
+                        {% for disco_tamanho in hastes.get(haste_nome, []) %}
+                            <div class="disco" style="width: {{ (disco_tamanho / num_discos) * 80 + 20 }}%;"></div>
+                        {% endfor %}
+                    </div>
+                    <div class="base"></div>
+                </div>
+                {# A label da haste agora está FORA da div "haste" para maior controle de posicionamento #}
+                <p class="haste-nome-fora">{{ haste_nome }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="game-controls">
+            {% if not vitoria %}
+                <form method="POST" class="controles-hanoi">
+                    <div class="input-grupo">
+                        <label for="origem">Mover de:</label>
+                        <select name="origem" id="origem">
+                            {% for haste_nome in hastes_nomes %}
+                                <option value="{{ haste_nome }}">{{ haste_nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-grupo">
+                        <label for="destino">Para:</label>
+                        <select name="destino" id="destino">
+                            {% for haste_nome in hastes_nomes %}
+                                <option value="{{ haste_nome }}">{{ haste_nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="botao-mover">Mover Disco</button>
+                </form>
+            {% else %}
+                <div class="jogo-finalizado">
+                    <a href="{{ url_for('reiniciar_hanoi') }}" class="botao-reiniciar">Jogar Novamente</a>
+                </div>
+            {% endif %}
+            <form action="{{ url_for('reiniciar_hanoi') }}" method="get">
+                <button type="submit" class="botao-reiniciar-jogo">Reiniciar Jogo</button>
+            </form>
+        </div>
+        
+        <a href="{{ url_for('index') }}" class="botao-voltar">Voltar à página inicial</a>
+    </main>
+</body>
+</html>

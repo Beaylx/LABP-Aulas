@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joguinhos Python</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <div class="logo">
+    </div>
+    <h1>O que você deseja jogar?</h1>
+    <div class="jogos-lista">
+      {% for jogo in jogos %}
+      <a href="{{ url_for(jogo.rota) }}" class="botao-jogo">{{ jogo.nome }}</a>
+      {% endfor %}
+    </div>
+  </main>
+</body>
+</html>

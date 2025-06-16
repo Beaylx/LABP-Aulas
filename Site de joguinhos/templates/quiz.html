@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Geek</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='quiz.css') }}">
+</head>
+<body>
+    <main class="container">
+        <h1>QUIZ GEEK!</h1>
+        <p class="subtitulo">Teste seus conhecimentos e divirta-se!</p>
+
+        {% if not quiz_terminado %}
+            <div class="pergunta-atual">
+                <p class="pontuacao-atual">Pontuação Atual: {{ pontuacao }}</p>
+                
+                {% if resultado_rodada == 'correta' %}
+                    <p class="feedback-resposta acerto">Parabéns! Você Acertou! ^^</p>
+                {% elif resultado_rodada == 'errada' %}
+                    <p class="feedback-resposta erro">Opa! Resposta Errada... :(</p>
+                {% endif %}
+
+                {% if pergunta %}
+                    <h2>{{ pergunta.pergunta }}</h2>
+                    <form method="POST" class="opcoes-quiz">
+                        {% for opcao in pergunta.opcoes %}
+                            <label class="opcao-label">
+                                <input type="radio" name="resposta_quiz" value="{{ loop.index }}" required>
+                                {{ loop.index }}. {{ opcao }}
+                            </label>
+                        {% endfor %}
+                        <button type="submit" class="botao-enviar">Responder</button>
+                    </form>
+                {% else %}
+                    <p>Erro ao carregar a pergunta.</p>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="quiz-finalizado">
+                <h2>Quiz Finalizado!</h2>
+                <p class="mensagem-final">Parabéns!^^ Você ficou com um total de <span class="pontuacao-final">{{ pontuacao }}</span> pontos!ÒwÓ</p>
+                <a href="{{ url_for('reiniciar_quiz') }}" class="botao-reiniciar">Jogar Novamente</a>
+            </div>
+        {% endif %}
+        
+        <a href="{{ url_for('index') }}" class="botao-voltar">Voltar à página inicial</a>
+    </main>
+</body>
+</html>

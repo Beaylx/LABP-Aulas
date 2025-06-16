@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedra, Papel e Tesoura</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='pedra_papel_tesoura.css') }}">
+</head>
+<body>
+    <main class="container">
+        <div class="logo"></div>
+        <h1>Pedra, Papel e Tesoura</h1>
+
+        <div class="placar">
+            <p>Você: <span class="placar-pontos">{{ placar_usuario }}</span></p>
+            <p>Computador: <span class="placar-pontos">{{ placar_computador }}</span></p>
+        </div>
+
+        {% if resultado_rodada %}
+            <div class="resultado-rodada">
+                {% if escolha_usuario and escolha_computador %}
+                    <p>Você escolheu: <strong>{{ escolha_usuario }}</strong></p>
+                    <p>O computador escolheu: <strong>{{ escolha_computador }}</strong></p>
+                {% endif %}
+                <p class="mensagem {{ 'vitoria' if 'Você venceu' in resultado_rodada else ('derrota' if 'O computador venceu' in resultado_rodada else 'empate') }}">
+                    {{ resultado_rodada }}
+                </p>
+            </div>
+        {% endif %}
+
+        <form method="POST" class="opcoes-ppt">
+            <button type="submit" name="escolha" value="PEDRA" class="botao-ppt">PEDRA</button>
+            <button type="submit" name="escolha" value="PAPEL" class="botao-ppt">PAPEL</button>
+            <button type="submit" name="escolha" value="TESOURA" class="botao-ppt">TESOURA</button>
+        </form>
+
+        <a href="{{ url_for('reiniciar_ppt') }}" class="botao-reiniciar">Reiniciar Jogo</a>
+        <a href="{{ url_for('index') }}" class="botao-voltar">Voltar à página inicial</a>
+    </main>
+</body>
+</html>

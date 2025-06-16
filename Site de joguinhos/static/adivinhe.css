@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e;
+    font-family: Arial, sans-serif;
+    color: #f1f1f1;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./images/Fundo\ abelhas.jpg);
+  }
+  
+  .container {
+    background-color: #26272e;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    width: 500px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border: white solid 2px;
+  }
+
+  .logo {
+    padding-top: -60px;
+    width: 250px;
+    height: 250px;
+    background-image: url(./images/Números.png);
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    align-self: center;
+    align-content: center;
+  }
+  
+  h1 {
+    margin-bottom: 25px;
+    font-size: 40px;
+    color: #f9f9f9;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: -10px;
+  }
+
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  input[type="number"] {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    background-color: #373842;
+    color: #fff;
+  }
+  
+  .botao-enviar {
+    width: 317px;
+    padding: 12px;
+    background-color: #4a4c5a;
+    box-shadow: inset 0 -5px 0 #373842;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  .botao-enviar:hover {
+    background-color: #6d6d6d;
+    box-shadow: inset 0 -4px 0 #888;
+  }
+  
+  .resultado {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    width: 300px;
+  }
+  
+  .resultado.acerto {
+    background-color: #87c98a;
+    color: #ffffff;
+  }
+  
+  .resultado.erro {
+    background-color: #d46666;
+    color: #ffffff;
+  }
+  
+  .links {
+    margin-top: 25px;
+  }
+  
+  .botao-voltar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #373842;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .botao-voltar:hover {
+    background-color: #5a5a5a;
+  }
+  

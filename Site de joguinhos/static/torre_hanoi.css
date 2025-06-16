@@ -1,0 +1,227 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e;
+    font-family: Arial, sans-serif;
+    color: #f1f1f1;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: #2c2c2c;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 32px;
+    color: #f9f9f9;
+}
+
+.subtitulo {
+    font-size: 1.1em;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.movimentos-info {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.num-movimentos {
+    color: #2196F3;
+}
+
+.mensagem-jogo {
+    background-color: #3e3e3e;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    color: #FFC107;
+    font-weight: bold;
+}
+
+.hanoi-board {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+    height: 250px;
+    margin: 30px 0;
+    padding-bottom: 10px; 
+    border-bottom: 5px solid #666; 
+    position: relative; 
+}
+
+.haste {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    position: relative; 
+}
+
+.haste .post {
+    width: 8px;
+    height: 80%;
+    background-color: #f1f1f1;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+}
+
+.haste .base {
+    width: 100%;
+    height: 10px;
+    background-color: #964B00;
+    margin-top: 235px;
+    border-radius: 5px;
+    z-index: 2; 
+}
+
+
+
+.haste-nome-fora {
+    position: absolute;
+    bottom: 200px; 
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #f9f9f9;
+    text-align: center;
+    width: 30%; 
+    &:nth-of-type(1) { left: 16.66%; transform: translateX(-50%); };
+    &:nth-of-type(2) { left: 50%; transform: translateX(-50%); };  
+    &:nth-of-type(3) { left: 83.33%; transform: translateX(-50%); };
+}
+
+.discos {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-bottom: 10px;
+    height: calc(80% - 10px);
+}
+
+.disco {
+    height: 30px;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    transition: width 0.3s ease-in-out; 
+    flex-shrink: 0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    border: 1px solid #000;
+}
+
+/* Cores fixas para os discos */
+.disco:nth-child(1) { background-color: #e74c3c; } /* Disco 1 (menor) - Vermelho */
+.disco:nth-child(2) { background-color: #f1c40f; } /* Disco 2 - Amarelo */
+.disco:nth-child(3) { background-color: #2ecc71; } /* Disco 3 - Verde */
+.disco:nth-child(4) { background-color: #9b59b6; } /* Disco 4 (maior) - Roxo */
+
+
+.game-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.controles-hanoi {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.input-grupo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-grupo label {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.input-grupo select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.input-grupo select:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
+.botao-mover,
+.botao-reiniciar-jogo {
+    padding: 12px 25px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.botao-mover {
+    background-color: #4CAF50;
+}
+
+.botao-mover:hover {
+    background-color: #388E3C;
+}
+
+.botao-reiniciar-jogo {
+    background-color: #f44336;
+    margin-top: 15px; 
+}
+
+.botao-reiniciar-jogo:hover {
+    background-color: #d32f2f;
+}
+
+.jogo-finalizado {
+    margin-top: 20px;
+}
+
+.botao-reiniciar,
+.botao-voltar {
+    display: inline-block;
+    margin: 10px 5px;
+    padding: 12px 20px;
+    background-color: #555;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.botao-reiniciar:hover,
+.botao-voltar:hover {
+    background-color: #777;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Batalha Naval</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='batalha_naval.css') }}">
+</head>
+<body>
+  <main class="container">
+    <div class="logo"></div>
+    <h1>Batalha Naval</h1>
+
+    {# Mostra o formulário apenas se o jogo não estiver finalizado #}
+    {% if not jogo_finalizado %}
+      <form method="POST">
+        <label for="linha">Escolha uma linha (A-E):</label>
+        <select id="linha" name="linha" required>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
+        </select>
+
+        <label for="coluna">Escolha uma coluna (1-5):</label>
+        <select id="coluna" name="coluna" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <button type="submit" class="botao-enviar">Atacar</button>
+      </form>
+    {% else %}
+        {# Se o jogo acabou, mostramos um botão para reiniciar #}
+        <p>O jogo acabou!</p>
+        <a href="{{ url_for('reiniciar_jogo') }}" class="botao-enviar">Jogar Novamente</a>
+    {% endif %}
+
+    {% if resultado %}
+      <div class="resultado {{ 'acerto' if 'acertou' in resultado.lower() else 'erro' }}">
+        <p>{{ resultado }}</p>
+      </div>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" class="botao-voltar">Voltar à página inicial</a>
+  </main>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Adivinhe o Número</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='adivinhe.css') }}">
+</head>
+<body>
+  <main class="container">
+    <div class="logo">
+    </div>
+    <h1>Adivinhe o Número</h1>
+
+    <form method="POST">
+      <label for="palpite">Digite um número entre 1 e 100:</label>
+      <input type="number" id="palpite" name="palpite" required min="1" max="100">
+      <input type="submit" class="botao-enviar" value="Enviar Palpite">
+    </form>
+
+    {% if resultado %}
+      <div class="resultado {% if "Parabéns" in resultado %}acerto{% else %}erro{% endif %}">
+        <p>{{ resultado }}</p>
+      </div>
+    {% endif %}
+
+    <div class="links">
+      <a href="{{ url_for('index') }}" class="botao-voltar">Voltar para página inicial</a>
+    </div>
+  </main>
+</body>
+</html>
