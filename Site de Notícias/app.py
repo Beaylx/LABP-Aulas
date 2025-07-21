@@ -7,15 +7,15 @@ usuarios_cadastrados = []
 USUARIO_FIXO = {'username': 'teste', 'password': '123'}
 
 NOTICIAS = [
-    {'titulo': 'Brasil vence o Mundial de Vôlei!', 'categoria': 'Esportes', 'conteudo': 'A seleção brasileira de vôlei masculino conquistou o título mundial após uma campanha impecável.'},
-    {'titulo': 'Novo filme de comédia arrasa nas bilheterias', 'categoria': 'Entretenimento', 'conteudo': 'O filme "Risadas Garantidas" está fazendo um sucesso estrondoso, com críticas positivas e recordes de público.'},
-    {'titulo': 'Dicas para um final de semana relaxante', 'categoria': 'Lazer', 'conteudo': 'Descubra atividades para aproveitar seu tempo livre, recarregar as energias e fugir da rotina estressante.'},
-    {'titulo': 'Recorde de medalhas para o Brasil nas Olimpíadas', 'categoria': 'Esportes', 'conteudo': 'Os atletas brasileiros brilharam nas pistas e piscinas, superando as expectativas e conquistando um número histórico de medalhas.'},
-    {'titulo': 'Show beneficente arrecada fundos para hospitais', 'categoria': 'Entretenimento', 'conteudo': 'Grandes nomes da música se reuniram em um evento inesquecível, arrecadando milhões para a causa da saúde pública.'},
-    {'titulo': 'Explorando trilhas ecológicas na Amazônia', 'categoria': 'Lazer', 'conteudo': 'Uma aventura única pela maior floresta tropical do mundo, com guias especializados e paisagens de tirar o fôlego.'},
-    {'titulo': 'Campeonato Brasileiro acirrado até a última rodada', 'categoria': 'Esportes', 'conteudo': 'A disputa pelo título está mais emocionante do que nunca, com vários times na briga até os minutos finais da competição.'},
+    {'titulo': 'São Paulo vence clássico Majestoso e Mirassol atropela o Santos', 'categoria': 'Esportes', 'conteudo': 'O São Paulo venceu o clássico “Majestoso” por 2 × 0 em casa, enquanto o Mirassol goleou o Santos por 3 × 0 na mesma rodada'},
+    {'titulo': 'Preta Gil morre aos 50 anos, nos Estados Unidos', 'categoria': 'Entretenimento', 'conteudo': 'A cantora Preta Gil faleceu em 20 de julho, aos 50 anos, após complicações de câncer nos EUA; a notícia foi confirmada por sua assessoria.'},
+    {'titulo': 'Parque de SP terá o maior toboágua do planeta em 2026', 'categoria': 'Lazer', 'conteudo': 'O Acqua Thermas Park, em Sorocaba (90 km de SP), incluirá o maior toboágua e uma praia artificial de 3 000 m², inaugurando em 2026.'},
+    {'titulo': 'Tati Dias lança campeonato de futevôlei apenas para mulheres em São Paulo', 'categoria': 'Esportes', 'conteudo': 'A influenciadora Tati Dias lançou o “Circuito Gaia de Futevôlei”, primeira competição 100 % feminina realizada num espaço na zona sul da capital.'},
+    {'titulo': 'Governo de SP anuncia ações de incentivo a circos', 'categoria': 'Entretenimento', 'conteudo': 'O governo estadual lançou três novidades culturais: o Troféu Picadeiro, programa Pró‑Circo e o Festival de Circo SP 2025.'},
+    {'titulo': 'Maior tirolesa do mundo terá 3,4 km e ficará no interior de São Paulo', 'categoria': 'Lazer', 'conteudo': 'Uma enorme tirolesa de 3,4 km será instalada no interior paulista, apontada como recorde mundial em extensão.'},
+    {'titulo': 'Brasileirão retorna com Flamengo x São Paulo neste sábado no Maracanã', 'categoria': 'Esportes', 'conteudo': 'A partida entre Flamengo e São Paulo marcou o retorno do Brasileirão; apesar de não ocorrer em SP, envolve diretamente o time da cidade.'},
     {'titulo': 'Série de TV de sucesso renovada para nova temporada', 'categoria': 'Entretenimento', 'conteudo': 'Os fãs da série já podem comemorar a continuação da história que conquistou milhões de espectadores em todo o mundo.'},
-    {'titulo': 'Culinária gourmet para o fim de semana', 'categoria': 'Lazer', 'conteudo': 'Receitas fáceis e saborosas para impressionar seus convidados e desfrutar de momentos deliciosos em casa.'},
+    {'titulo': '🖼 Andy Warhol e o pop art brasileiro dialogam em São Paulo', 'categoria': 'Lazer', 'conteudo': 'Duas exposições na capital destacam o pop art: uma com 600 obras de Warhol na FAAP e outra com artistas brasileiros na Pinacoteca, com críticas sociais e políticas dos anos 60 e 70..'},
 ]
 
 @app.context_processor
