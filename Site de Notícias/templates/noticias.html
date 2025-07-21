@@ -34,6 +34,10 @@
             {% if noticias %}
                 {% for noticia in noticias %}
                     <div class="news-item">
+                        {% if noticia.imagem %}
+                        <img src="{{ url_for('static', filename='images/' + noticia.imagem) }}" alt="{{ noticia.titulo }}" class="news-image">
+                        {% endif %}
+                        
                         <h4>{{ noticia.titulo }}</h4>
                         <p><strong>Categoria:</strong> {{ noticia.categoria }}</p>
                         <p>{{ noticia.conteudo }}</p>
