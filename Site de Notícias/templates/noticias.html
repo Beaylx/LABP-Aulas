@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/noticias.css') }}">
+</head>
+<body class="{{ 'dark-theme' if current_theme == 'escuro' else '' }}">
+    <div class="container {{ 'dark-theme' if current_theme == 'escuro' else '' }}">
+        <h2>Notícias Recentes</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <div class="category-filter">
+            <h3>Filtrar por Categoria:</h3>
+            {% for categoria in categorias %}
+                <a href="{{ url_for('noticias', categoria=categoria) }}" 
+                   class="btn {% if categoria == categoria_ativa %}active{% endif %}">
+                    {{ categoria }}
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="news-list">
+            {% if noticias %}
+                {% for noticia in noticias %}
+                    <div class="news-item">
+                        <h4>{{ noticia.titulo }}</h4>
+                        <p><strong>Categoria:</strong> {{ noticia.categoria }}</p>
+                        <p>{{ noticia.conteudo }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Nenhuma notícia encontrada para a categoria selecionada.</p>
+            {% endif %}
+        </div>
+        
+        <p><a href="{{ url_for('boas_vindas') }}">Voltar para a Página Inicial</a></p>
+        <p><a href="{{ url_for('logout') }}">Sair (Logout)</a></p>
+
+        <div class="theme-switcher">
+            <p>Escolher Tema:</p>
+            <a href="{{ url_for('set_theme', theme='claro') }}">Tema Claro</a>
+            <a href="{{ url_for('set_theme', theme='escuro') }}">Tema Escuro</a>
+        </div>
+    </div>
+</body>
+</html>

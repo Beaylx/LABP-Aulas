@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body class="{{ 'dark-theme' if current_theme == 'escuro' else '' }}">
+    <div class="container {{ 'dark-theme' if current_theme == 'escuro' else '' }}">
+        <h2>Bem-vindo, {{ username }}!</h2>
+        <p>Esta é a página principal do seu portal.</p>
+        <p>Você acessou esta página **{{ views_count }}** vezes nesta sessão.</p>
+
+        <p><a href="{{ url_for('noticias') }}">Ver Notícias</a></p>
+        <p><a href="{{ url_for('logout') }}">Sair (Logout)</a></p>
+
+        <div class="theme-switcher">
+            <p>Escolher Tema:</p>
+            <a href="{{ url_for('set_theme', theme='claro') }}">Tema Claro</a>
+            <a href="{{ url_for('set_theme', theme='escuro') }}">Tema Escuro</a>
+        </div>
+    </div>
+</body>
+</html>
