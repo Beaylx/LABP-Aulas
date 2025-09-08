@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de formulário</title>
+    <meta charset="UTF-8">
+    <style>
+        body{font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin:40px auto;}
+        .form-group{margin-bottom: 15px;;}
+        label{display: block; margin-bottom: 5px;}
+        input{width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc;}
+
+        input:invalid:not(:placeholder-shown){
+            border-color: red;
+        }
+
+        input:valid:not(:placeholder-shown){
+            border-color: rgb(0, 255, 0);
+        }
+
+        button{padding: 10px 15px; background-color: #007bff; color: white; border: none; cursor:pointer;}
+        button:hover{background-color: #0056b3;}
+
+        .flash{padding: 10px; margin-top: 20px; border-radius: 5px;}
+        .flash.sucess{background-color:#d4edda; color: #155724; border: 1px solid #c3e6cb ;}
+    </style>
+</head>
+<body>
+    <h1>Formulario de Cadastro</h1>
+    <p>Tente enviar o form com infos invalidas</p>
+    {% with messages = get_fiashed+messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash" {{categpry}}>{{message}}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="/formulario" method="POST" novalidate></form>
+
+        <div class="form-group">
+            <label for="nome">Nome completo:</label>
+            <input type="text" id="nome" name="nome" required minlength="3" placeholder="">
+        </div>
+
+        <div class="form-group"></div>
+</body>
+</html>
