@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Hotel Estada Feliz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <h1>🏨 Hotel Estada Feliz</h1>
+            <p>Sistema de Gerenciamento</p>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <form method="POST">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha:</label>
+                    <input type="password" name="senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+            
+            <div class="test-users">
+                <p><strong>Usuários de Teste:</strong></p>
+                <small>Admin: admin@hotel.com / admin123</small><br>
+                <small>Recepção: recepcao@hotel.com / recepcao123</small><br>
+                <small>Camareira: camareira@hotel.com / camareira123</small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

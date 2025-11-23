@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Camareira - Hotel Estada Feliz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h2>Camareira</h2>
+        <span>Bem-vinda, {{ usuario.nome }}!</span>
+        <a href="{{ url_for('logout') }}" class="btn btn-secondary">Sair</a>
+    </div>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="section">
+            <h3>Status de Limpeza dos Quartos</h3>
+            <div class="quartos-grid">
+                {% for q in quartos %}
+                <div class="quarto-card">
+                    <h3>Quarto {{ q.numero }}</h3>
+                    <p class="tipo">{{ q.tipo }}</p>
+                    <p class="status status-{{ q.status|lower }}">{{ q.status }}</p>
+                    <form method="POST" action="{{ url_for('update_quarto', id=q.id) }}">
+                        <select name="status">
+                            <option {% if q.status=='Limpo' %}selected{% endif %}>Limpo</option>
+                            <option {% if q.status=='Sujo' %}selected{% endif %}>Sujo</option>
+                            <option {% if q.status=='Limpando' %}selected{% endif %}>Limpando</option>
+                        </select>
+                        <button type="submit" class="btn btn-small">Salvar</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel do Admin - Hotel Estada Feliz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h2>Administração</h2>
+        <span>Bem-vindo, {{ usuario.nome }}!</span>
+        <a href="{{ url_for('logout') }}" class="btn btn-secondary">Sair</a>
+    </div>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="section">
+            <h3>Usuários</h3>
+            <button onclick="toggleForm('formUsuario')" class="btn btn-primary">+ Novo Usuário</button>
+            <div id="formUsuario" class="form-container" style="display:none;">
+                <form method="POST" action="{{ url_for('add_usuario') }}">
+                    <input name="nome" placeholder="Nome" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="senha" placeholder="Senha" required>
+                    <select name="perfil">
+                        {% for p in perfis %}<option>{{ p }}</option>{% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </form>
+            </div>
+            <table>
+                <thead><tr><th>Nome</th><th>Email</th><th>Perfil</th><th></th></tr></thead>
+                <tbody>
+                    {% for u in usuarios %}
+                    <tr>
+                        <td>{{ u.nome }}</td>
+                        <td>{{ u.email }}</td>
+                        <td>{{ u.perfil }}</td>
+                        <td>
+                            {% if u.id != usuario.id %}
+                            <form method="POST" action="{{ url_for('del_usuario', id=u.id) }}">
+                                <button type="submit" class="btn btn-danger btn-small">Excluir</button>
+                            </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h3>Quartos</h3>
+            <button onclick="toggleForm('formQuarto')" class="btn btn-primary">+ Novo Quarto</button>
+            <div id="formQuarto" class="form-container" style="display:none;">
+                <form method="POST" action="{{ url_for('add_quarto') }}">
+                    <input name="numero" placeholder="Número" required>
+                    <input name="tipo" placeholder="Tipo" required>
+                    <input type="number" step="0.01" name="preco" placeholder="Preço" required>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </form>
+            </div>
+            <table>
+                <thead><tr><th>Número</th><th>Tipo</th><th>Status</th><th>Preço</th><th></th></tr></thead>
+                <tbody>
+                    {% for q in quartos %}
+                    <tr>
+                        <td>{{ q.numero }}</td>
+                        <td>{{ q.tipo }}</td>
+                        <td><span class="badge badge-{{ q.status|lower }}">{{ q.status }}</span></td>
+                        <td>R$ {{ "%.2f"|format(q.preco) }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('del_quarto', id=q.id) }}">
+                                <button type="submit" class="btn btn-danger btn-small">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

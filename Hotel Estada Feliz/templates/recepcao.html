@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Recepção - Hotel Estada Feliz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <h2>Recepção</h2>
+        <span>Bem-vindo, {{ usuario.nome }}!</span>
+        <a href="{{ url_for('logout') }}" class="btn btn-secondary">Sair</a>
+    </div>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="section">
+            <h3>Reservas</h3>
+            <button onclick="toggleForm('formReserva')" class="btn btn-primary">+ Nova Reserva</button>
+            <div id="formReserva" class="form-container" style="display:none;">
+                <form method="POST" action="{{ url_for('add_reserva') }}">
+                    <input name="hospede" placeholder="Hóspede" required>
+                    <input name="quarto" placeholder="Quarto" required>
+                    <input type="date" name="checkin" required>
+                    <input type="date" name="checkout" required>
+                    <button type="submit" class="btn btn-success">Reservar</button>
+                </form>
+            </div>
+            <table>
+                <thead><tr><th>Hóspede</th><th>Quarto</th><th>Check-in</th><th>Check-out</th><th>Status</th><th></th></tr></thead>
+                <tbody>
+                    {% for r in reservas %}
+                    <tr>
+                        <td>{{ r.hospede }}</td>
+                        <td>{{ r.quarto }}</td>
+                        <td>{{ r.checkin }}</td>
+                        <td>{{ r.checkout }}</td>
+                        <td><span class="badge">{{ r.status }}</span></td>
+                        <td>
+                            <form method="POST" action="{{ url_for('del_reserva', id=r.id) }}">
+                                <button type="submit" class="btn btn-danger btn-small">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="section">
+            <h3>Hóspedes</h3>
+            <button onclick="toggleForm('formHospede')" class="btn btn-primary">+ Novo Hóspede</button>
+            <div id="formHospede" class="form-container" style="display:none;">
+                <form method="POST" action="{{ url_for('add_hospede') }}">
+                    <input name="nome" placeholder="Nome" required>
+                    <input name="cpf" placeholder="CPF" required>
+                    <input name="telefone" placeholder="Telefone" required>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </form>
+            </div>
+            <table>
+                <thead><tr><th>Nome</th><th>CPF</th><th>Telefone</th><th></th></tr></thead>
+                <tbody>
+                    {% for h in hospedes %}
+                    <tr>
+                        <td>{{ h.nome }}</td>
+                        <td>{{ h.cpf }}</td>
+                        <td>{{ h.telefone }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('del_hospede', id=h.id) }}">
+                                <button type="submit" class="btn btn-danger btn-small">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

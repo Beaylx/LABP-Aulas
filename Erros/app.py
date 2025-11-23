@@ -2,22 +2,22 @@ from flask import Flask, render_template, abort
 
 app = Flask(__name__)
 
-#rota principal
+#Rota principal
 
 @app.route('/')
 
 def index():
     returnnrender_template('index.html')
 
-#para demonstrar o erro 401, vamos criar uma rota que exige login (simulaod)
+#Para demonstrar o erro 401, vamos criar uma rota que exige login (simulaod)
 
 @app.route('/area-restrita')
 
 def area_restrita():
 
-    #em uma aplicação real, aqui você verificaria se o usuário está logado
+    #Em uma aplicação real, aqui você verificaria se o usuário está logado
 
-    #como não temos um sistema de login vamos forçar o erro 401 com abort().
+    #Como não temos um sistema de login vamos forçar o erro 401 com abort().
 
     print("Tentativa de acesso à área restrita sem autenticação.")
 
